@@ -1,4 +1,4 @@
-package uz.bakhromjon;
+package uz.bakhromjon.support;
 
 /**
  * @author : Bakhromjon Khasanboyev
