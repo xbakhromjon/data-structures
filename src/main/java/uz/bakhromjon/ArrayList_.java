@@ -2,7 +2,8 @@ package uz.bakhromjon;
 
 import uz.bakhromjon.base.Collection_;
 import uz.bakhromjon.support.ArraysSupport_;
-
+import uz.bakhromjon.support.Arrays_;
+import uz.bakhromjon.support.System_;
 
 import java.util.Arrays;
 
@@ -21,8 +22,7 @@ public class ArrayList_<E> {
         } else if (initialCapacity == 0) {
             this.elementData = new Object[]{};
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: " +
-                    initialCapacity);
+            throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
         }
     }
 
@@ -36,9 +36,7 @@ public class ArrayList_<E> {
     }
 
     public boolean add(E e) {
-        if (size == elementData.length)
-            elementData = grow();
-
+        if (size == elementData.length) elementData = grow();
         elementData[size] = e;
         size++;
         return true;
@@ -46,18 +44,18 @@ public class ArrayList_<E> {
 
     public void add(int index, E element) {
         rangeCheck(index);
-        Object[] elementData;
-        if (size == (elementData = this.elementData).length)
-            elementData = grow();
-        System.arraycopy(elementData, index,
-                elementData, index + 1,
-                size - index);
-        elementData[index] = element;
+        Object[] newElementData;
+        if (size == this.elementData.length) this.elementData = grow();
+        newElementData = new Object[this.elementData.length];
+        System_.arrayCopy(elementData, 0, index, newElementData, 0);
+        System_.arrayCopy(elementData, index, size, newElementData, index + 1);
+        newElementData[index] = element;
+        this.elementData = newElementData;
         size = size + 1;
     }
 
     private void rangeCheck(int index) {
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         }
     }
@@ -84,16 +82,11 @@ public class ArrayList_<E> {
 
     public E remove(int index) {
         rangeCheck(index);
-        Object[] elementData = new Object[this.elementData.length - 1];
-        int j = 0;
-        for (int i = 0; i < size; i++) {
-            if (i != index) {
-                elementData[j] = this.elementData[i];
-                j++;
-            }
-        }
+        Object[] newElementData = new Object[this.elementData.length - 1];
+        System_.arrayCopy(elementData, 0, index, newElementData, 0);
+        System_.arrayCopy(elementData, index + 1, size, newElementData, index);
         E removedValue = elementData(index);
-        this.elementData = elementData;
+        this.elementData = newElementData;
         size--;
         return removedValue;
     }
@@ -118,5 +111,48 @@ public class ArrayList_<E> {
         E oldValue = elementData(index);
         elementData[index] = element;
         return oldValue;
+    }
+
+    public void clear() {
+        for (int to = size, i = size = 0; i < to; i++)
+            elementData[i] = null;
+    }
+
+    public int indexOf(E element) {
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int lastIndexOf(E element) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (elementData[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean contains(E element) {
+        return indexOf(element) >= 0;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] toArray() {
+        return Arrays_.copyOff(elementData, size);
+    }
+
+    public <T> T[] toArray(T[] a) {
+        return (T[]) Arrays_.copyOff(elementData, size, a.getClass());
     }
 }
