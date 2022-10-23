@@ -1,18 +1,21 @@
 package uz.bakhromjon;
 
 
-import java.util.ArrayList;
+import uz.bakhromjon.support.LinkedList_;
+
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> original = new ArrayList<>();
-        Integer[] arr = original.toArray(new Integer[0]);
-        ArrayList_<Integer> list = new ArrayList_<>(120);
-        list.add(12);
-        list.add(1);
-        list.add(1);
-        Integer[] integers = list.toArray(new Integer[0]);
-        System.out.println(list.lastIndexOf(1));
+        LinkedList<Integer> ll = new LinkedList<>();
+//        ll.get(12);
+        LinkedList_<Integer> mll = new LinkedList_<>();
+        mll.add(12);
+        mll.add(14);
+        mll.add(124);
+        mll.add(123);
+        System.out.println(mll.get(21));
     }
 }
 
