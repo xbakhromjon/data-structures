@@ -1,21 +1,22 @@
 package uz.bakhromjon;
 
 
-import uz.bakhromjon.support.LinkedList_;
-
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<Integer> ll = new LinkedList<>();
-//        ll.get(12);
-        LinkedList_<Integer> mll = new LinkedList_<>();
-        mll.add(12);
-        mll.add(14);
-        mll.add(124);
-        mll.add(123);
-        System.out.println(mll.get(21));
+        Stack<Integer> os = new Stack<>();
+        os.push(12);
+        os.push(13);
+        os.push(14);
+        os.push(15);
+        System.out.println(os.search(15));
+        Stack_<Integer> ms = new Stack_<>();
+        ms.push(12);
+        ms.push(13);
+        ms.push(14);
+        ms.push(15);
+        System.out.println(ms.search(15));
     }
 }
 

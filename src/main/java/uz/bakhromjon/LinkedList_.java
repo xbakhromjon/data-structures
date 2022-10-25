@@ -1,4 +1,4 @@
-package uz.bakhromjon.support;
+package uz.bakhromjon;
 
 import java.util.NoSuchElementException;
 
@@ -73,5 +73,55 @@ public class LinkedList_<E> {
 
     private String outOfBoundsMsg(int index) {
         return "Index: " + index + ", Size: " + size;
+    }
+
+    public E peek() {
+        return (first == null) ? null : first.item;
+    }
+
+    public E poll() {
+        if (first == null) {
+            return null;
+        }
+        E item = first.item;
+        first = first.next;
+        return item;
+    }
+
+    public E set(int index, E element) {
+        checkElementIndex(index);
+        Node<E> target = node(index);
+        E oldVal = target.item;
+        target.item = element;
+        return oldVal;
+    }
+
+    private Node<E> node(int index) {
+        Node<E> target = first;
+        int i = 0;
+        while (i != index) {
+            target = first.next;
+            i++;
+        }
+        return target;
+    }
+
+    public E remove(int index) {
+        checkElementIndex(index);
+        Node<E> removed = node(index);
+        if (index == 0) {
+            first = first.next;
+            if (first != null) {
+                first.prev = null;
+            }
+        } else if (index == size - 1) {
+            last.prev.next = null;
+            last = last.prev;
+        } else {
+            Node<E> prev = node(index - 1);
+            prev.next = node(index + 1);
+        }
+        size--;
+        return removed.item;
     }
 }
