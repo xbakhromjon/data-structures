@@ -1,22 +1,21 @@
 package uz.bakhromjon;
 
 
-import java.util.Stack;
+import uz.bakhromjon.queue.ArrayDeque_;
+
+import java.util.ArrayDeque;
 
 public class Main {
     public static void main(String[] args) {
-        Stack<Integer> os = new Stack<>();
-        os.push(12);
-        os.push(13);
-        os.push(14);
-        os.push(15);
-        System.out.println(os.search(15));
-        Stack_<Integer> ms = new Stack_<>();
-        ms.push(12);
-        ms.push(13);
-        ms.push(14);
-        ms.push(15);
-        System.out.println(ms.search(15));
+        ArrayDeque<Integer> oad = new ArrayDeque<>(-12);
+        oad.addFirst(12);
+        oad.addLast(13);
+        System.out.println(oad.pollFirst());
+        System.out.println(oad.peekLast());
+        ArrayDeque_<Integer> mad = new ArrayDeque_<>();
+        mad.addFirst(12);
+        mad.addLast(13);
+        System.out.println(mad.peekLast());
     }
 }
 

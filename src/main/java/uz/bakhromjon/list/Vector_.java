@@ -1,4 +1,4 @@
-package uz.bakhromjon;
+package uz.bakhromjon.list;
 
 import uz.bakhromjon.exceptions.ArrayIndexOutOfBoundsException_;
 import uz.bakhromjon.exceptions.IndexOutOfBoundsException_;

@@ -1,4 +1,4 @@
-package uz.bakhromjon;
+package uz.bakhromjon.list;
 
 import uz.bakhromjon.base.Collection_;
 import uz.bakhromjon.support.ArraysSupport_;

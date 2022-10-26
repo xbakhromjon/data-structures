@@ -1,4 +1,4 @@
-package uz.bakhromjon;
+package uz.bakhromjon.list;
 
 import java.util.NoSuchElementException;
 
